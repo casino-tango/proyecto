@@ -4,21 +4,17 @@ import cookieParser from "cookie-parser";
 const app = express()
 app.use(express.json())
 import cors from 'cors'
-// app.use(cors({
-//     // origin: 'http://localhost:3001', // Permite solicitudes solo desde este origen
-//     origin:'https://proyecto-final-de-reack.vercel.app',
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite estos métodos HTTP
-//     allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados en la solicitud
-//     credentials: true // Esto permite que las credenciales como las cookies se envíen con la solicitud
-//   }));
-
-
 app.use(cors({
-  origin: ['https://proyecto-final-de-reack-git-main-casino-tangos-projects.vercel.app', 'https://proyecto-u1b6.onrender.com/api/'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+    // origin: 'http://localhost:3001', // Permite solicitudes solo desde este origen
+    origin:'https://proyecto-final-de-reack.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite estos métodos HTTP
+    allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados en la solicitud
+    credentials: true // Esto permite que las credenciales como las cookies se envíen con la solicitud
+  }));
+
+
+
+
 
 
 
