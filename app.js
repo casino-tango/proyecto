@@ -14,7 +14,7 @@ import cors from 'cors'
 
 
 app.use(cors({
-  origin: ['https://proyecto-final-de-reack.vercel.app', 'https://proyecto-u1b6.onrender.com/api/'],
+  origin: ['https://proyecto-final-de-reack-git-main-casino-tangos-projects.vercel.app', 'https://proyecto-u1b6.onrender.com/api/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
