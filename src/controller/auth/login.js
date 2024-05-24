@@ -39,7 +39,7 @@ export async function login(req, res) {
                 res.cookie("token", token, {
                     httOnly: true,
                     maxAge: 2 * 60 * 60 * 100,
-                    secure: secureCookie // Solo enviar sobre HTTPS en producción
+                    // secure: secureCookie // Solo enviar sobre HTTPS en producción
 
                 })
                 res.status(200).json({
