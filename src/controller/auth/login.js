@@ -19,7 +19,7 @@ export async function login(req, res) {
             res.status(301).json({ icon: "error", message: "Ingresa tu correo electrónico v ", });
             console.log("Ingresa tu correo electrónico ");
         }
-        
+
         else {
             const passHash = await bcryptjs.compare(password, user.password); //SE UTILIZA LA FUNCION COMPARE DE LA BIBLIOTECA DE BCRYPTJS PARA COMPARA LA CONTRASEÑA
             //RESPUESTAS EN CASO DE ERROR SI NO COINCIDE EL TOKEN
@@ -38,7 +38,9 @@ export async function login(req, res) {
                 });
                 res.cookie("token", token, {
                     httOnly: true,
-                    maxAge: 2 * 60 * 60 * 100
+                    maxAge: 2 * 60 * 60 * 100,
+                    secure: process.env.NODE_ENV === 'production' // Solo enviar sobre HTTPS en producción
+
                 })
                 res.status(200).json({
                     code: 201,
