@@ -11,12 +11,15 @@ import cors from 'cors'
 //     allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados en la solicitud
 //     credentials: true // Esto permite que las credenciales como las cookies se envíen con la solicitud
 //   }));
+
+
 app.use(cors({
-  origin: ['https://proyecto-final-de-reack.vercel.app', 'https://proyecto-u1b6.onrender.com/api/'],
+  origin: ['https://proyecto-final-de-reack.vercel.app', 'https://proyecto-u1b6.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 
 
 

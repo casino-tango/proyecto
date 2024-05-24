@@ -91,31 +91,21 @@ export async function mirar(req, res) {
 
 
 export async function verifytoken(req, res) {
-    const { token } = req.cookies
-    if (!token)
-        return res.status(400).json({ message: 'Not authorized' })
+    try {
+        const { token } = req.cookies
+        if (!token)
+            return res.status(400).json({ message: 'No hay autorización' })
 
-    jwt.verify(token, 'token', async (err, decodedToken) => {
-        if (err) return res.status(500).json({ message: 'Authorization failed' })
+        jwt.verify(token, 'token', async (err, decoded) => {
+            if (err) return res.status(401).json({ message: 'Token inválido' })
 
-        try {
-            // Buscar el usuario por su id
-            const userFound = await usuarios.findOne({ where: { id: decodedToken.userId } });
-            if (!userFound) return res.status(404).json({ message: 'Unauthorized' })
-
-            // Enviar la respuesta con los datos del usuario
-            return res.json({
-                id: userFound.id,
-                email: userFound.email,
-                ubicacion_del_elemento: userFound.ubicacion_del_elemento,
-                rol: userFound.rol,
-                message: "Bienvenido",
-            });
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ message: 'Error interno del servidor' });
-        }
-    });
+            // Si el token es válido, puedes devolver los datos del usuario
+            return res.json(decoded);
+        });
+    } catch (error) {
+        console.error('Error en la verificación del token:', error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
 }
 
 
