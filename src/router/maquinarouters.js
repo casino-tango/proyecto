@@ -76,26 +76,6 @@ router.get('/maquinas/:Numero_serial',validar2, buscar_serial);
 router.put('/maquinas/:Numero_serial',storage.fields(camposDeArchivos_editados), editar_maquina1);
 
 
-cron.schedule('* * * * *', () => {
-  // Lógica para eliminar archivos en el directorio público
-  fs.readdir(publicPath, (err, files) => {
-    if (err) {
-      console.error('Error al leer el directorio:', err);
-      return;
-    }
-
-    files.forEach(file => {
-      const filePath = path.join(publicPath, file);
-      fs.unlink(filePath, err => {
-        if (err) {
-          console.error('Error al eliminar el archivo:', err);
-          return;
-        }
-        console.log('Archivo eliminado:');
-      });
-    });
-  });
-});
 
 //Respuestas HTTP CORS
 // router.use(function (req, res, next) {
