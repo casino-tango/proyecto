@@ -36,7 +36,7 @@ export async function crear(req, res) {
 
         })
 
-     
+
 
         // await creo.setRol(rolExistente);
         const userSaved = creo.save()
@@ -82,7 +82,7 @@ export async function verifytoken(req, res) {
         id: userFound.id,
         email: userFound.email,
         ubicacion_del_elemento: userFound.ubicacion_del_elemento,
-        rol:userFound.rol,
+        rol: userFound.rol,
         message: "Bienvenido",
     })
 

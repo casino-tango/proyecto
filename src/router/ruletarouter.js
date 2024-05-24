@@ -21,8 +21,12 @@ import { validar2 } from "../middleware/validertoken.js";
 
 
 
-const upload = multer();
+const filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(filename);
+const publicPath = path.join(__dirname, '../public');
 
+const storage = multer({ dest: publicPath });
+const upload = multer({ storage });
 const router = Router();
 
 
@@ -44,9 +48,7 @@ const camposdeImg_editados = [
   { name: 'fotografia_de_placa' },
   { name: 'fotografia_de_billetero' }
 ]
-
-router.post('/ruletas', validar2, upload.fields(camposdeImg), crear)
-
+router.post('/ruletas', validar2, storage.fields(camposdeImg), crear)
 router.get('/ruletas/:Numero_serial', validar2, buscar)
 
 router.get('/ruletas', validar2, mirar)
@@ -57,7 +59,7 @@ router.delete('/ruletas/:Numero_serial', validar2, eliminar1)
 
 router.put('/ruleta2/:id', validar2, editar_ruleta)
 
-router.put('/ruletas/:Numero_serial', validar2, upload.fields(camposdeImg_editados), editar_ruleta_serial)
+router.put('/ruletas/:Numero_serial', validar2, storage.fields(camposdeImg_editados), editar_ruleta_serial)
 
 router.get('/ruleta/:ubicacion_del_elemento', mirar_ruleta_ubiccacion)
 
