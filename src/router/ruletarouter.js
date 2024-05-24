@@ -20,7 +20,6 @@ import { fileURLToPath } from 'url';
 import { validar2 } from "../middleware/validertoken.js";
 
 
-
 const filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(filename);
 const publicPath = path.join(__dirname, '../public');
@@ -48,7 +47,9 @@ const camposdeImg_editados = [
   { name: 'fotografia_de_placa' },
   { name: 'fotografia_de_billetero' }
 ]
+
 router.post('/ruletas', validar2, storage.fields(camposdeImg), crear)
+
 router.get('/ruletas/:Numero_serial', validar2, buscar)
 
 router.get('/ruletas', validar2, mirar)
