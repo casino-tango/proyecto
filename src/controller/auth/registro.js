@@ -66,28 +66,58 @@ export async function mirar(req, res) {
 }
 
 
+// export async function verifytoken(req, res) {
+//     const { token } = req.cookies
+//     if (!token)
+//         return res.status(400).json({ message: ' not authorization' })
+
+
+//     jwt.verify(token, 'token', async (err, usuarios) => {
+//         if (err) return res.status(500).json({ message: 'authorization' })
+
+//         const userFound = await usuarios.findAll(usuarios.id)
+//         if (!userFound) return res.status(404).json({ message: 'unauthorized' })
+//     })
+//     return res.json({
+//         id: userFound.id,
+//         email: userFound.email,
+//         ubicacion_del_elemento: userFound.ubicacion_del_elemento,
+//         rol: userFound.rol,
+//         message: "Bienvenido",
+//     })
+
+
+// }
+
+
 export async function verifytoken(req, res) {
     const { token } = req.cookies
     if (!token)
-        return res.status(400).json({ message: ' not authorization' })
+        return res.status(400).json({ message: 'Not authorized' })
 
+    jwt.verify(token, 'token', async (err, decodedToken) => {
+        if (err) return res.status(500).json({ message: 'Authorization failed' })
 
-    jwt.verify(token, 'token', async (err, usuarios) => {
-        if (err) return res.status(500).json({ message: 'authorization' })
+        try {
+            // Buscar el usuario por su id
+            const userFound = await usuarios.findOne({ where: { id: decodedToken.userId } });
+            if (!userFound) return res.status(404).json({ message: 'Unauthorized' })
 
-        const userFound = await usuarios.findAll(usuarios.id)
-        if (!userFound) return res.status(404).json({ message: 'unauthorized' })
-    })
-    return res.json({
-        id: userFound.id,
-        email: userFound.email,
-        ubicacion_del_elemento: userFound.ubicacion_del_elemento,
-        rol: userFound.rol,
-        message: "Bienvenido",
-    })
-
-
+            // Enviar la respuesta con los datos del usuario
+            return res.json({
+                id: userFound.id,
+                email: userFound.email,
+                ubicacion_del_elemento: userFound.ubicacion_del_elemento,
+                rol: userFound.rol,
+                message: "Bienvenido",
+            });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Error interno del servidor' });
+        }
+    });
 }
+
 
 
 
