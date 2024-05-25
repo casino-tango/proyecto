@@ -1,5 +1,5 @@
 import app from './app.js';
-import  sequelize  from "./src/database/database.js";
+import sequelize from "./src/database/database.js";
 import './src/model/usuariosMODEL.js'
 import './src/model/maquinasMODEL.js'
 import './src/model/ruletasMODEL.js'

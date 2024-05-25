@@ -5,12 +5,12 @@ const app = express()
 app.use(express.json())
 import cors from 'cors'
 app.use(cors({
-  // origin: 'http://localhost:3000', // Permite solicitudes solo desde este origen
-  origin:'https://proyecto-final-de-reack.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite estos métodos HTTP
-  allowedHeaders: ['Content-Type', 'Authorization'], // Permite estos encabezados en la solicitud
-  credentials: true // Esto permite que las credenciales como las cookies se envíen con la solicitud
+  origin: ['https://proyecto-final-de-reack.vercel.app', 'https://proyecto-final-de-reack.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
+
 
 
 
