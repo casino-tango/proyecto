@@ -5,7 +5,7 @@ const app = express()
 app.use(express.json())
 import cors from 'cors'
 app.use(cors({
-  origin: ['https://proyecto-final-de-reack.vercel.app', 'https://proyecto-final-de-reack.vercel.app'],
+  origin: ['https://proyecto-final-de-reack.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
