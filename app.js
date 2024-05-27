@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 const app = express()
 app.use(express.json())
 import cors from 'cors'
+
 app.use(cors({
   origin: ['https://proyecto-final-de-reack.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
