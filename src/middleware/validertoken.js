@@ -84,7 +84,7 @@ import jwt from "jsonwebtoken";
 
 
 
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 
 export const validar2 = (req, res, next) => {
     try {
