@@ -6,7 +6,7 @@ app.use(express.json())
 import cors from 'cors'
 
 app.use(cors({
-  origin: ['https://proyecto-final-de-reack.vercel.app'],
+  origin: ['https://proyecto-final-de-reack.onrender.com'],
   // origin: ['http://localhost:3000'],
 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
